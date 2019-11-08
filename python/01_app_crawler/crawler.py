@@ -15,7 +15,7 @@ requests_header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebK
 
 
 def get_content(url):
-    return requests.get(url, headers=requests_header, timeout=timeout).content
+    return requests.get(url, headers=requests_header, timeout=timeout).content.decode('utf-8')
 
 
 def main():
@@ -25,7 +25,7 @@ def main():
     count_url = 1
     while len(url_queue) is not 0:
         target_url = url_queue.pop(0)
-        content = get_content(target_url).decode('utf-8')
+        content = get_content(target_url)
         pkg, category, name, download, child = myapp.parse_target(target_url, content)
         if target_url not in url_checked:
             url_checked.append(target_url)
@@ -33,7 +33,7 @@ def main():
             if url not in url_checked and url not in url_queue:
                 url_queue.append(url)
                 count_url += 1
-        if pkg is not None and category is not None:
+        if pkg is not None and category is not None and len(pkg.strip()) > 0 and len(category.strip()) > 0:
             if pkg not in pkg_added:
                 pkg_added.append(pkg)
             record.update(pkg, category, name, download)
