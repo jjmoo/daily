@@ -1,0 +1,27 @@
+[color]
+        ui = auto
+[user]
+        name = zhuo.peng
+        email = zhuo.peng@tcl.com
+[alias]
+        # Shortening aliases 
+        co = checkout
+        cb = checkout -b
+        ft = fetch -p
+        ci = commit
+        ps = push
+        ba = branch -a
+        bd = branch -D
+        dc = diff --cached
+        cp = cherry-pick
+
+        # Feature improving aliases 
+        st = status
+        ad = add -p
+
+        # Complex aliases 
+        plg = log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
+        tlg = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        rank = shortlog -sn --no-merges
+        bdm = !git branch --merged | grep -v '*' | xargs -n 1 git branch -d
