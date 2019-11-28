@@ -21,7 +21,7 @@ if [ ! -d "$dest" ]; then
 fi
 
 # 移动文件，如有必要，修改错误信息并输出
-prefix=`date "+%H%M%S"``
+prefix=`date "+%H%M%S"`
 msg=`mv $args $dest/${prefix}_$args 2>&1`
 if [ ! "$msg" = "" ]; then
     echo ${msg//mv/my_rm} # 将错误信息中的“mv”替换成"my_rm"
