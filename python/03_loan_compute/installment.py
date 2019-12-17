@@ -1,3 +1,6 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 def getError(b, s, t, m):
     a = (1 + b) ** m
     return (a - s) * (b - t) - t * (s - 1)
@@ -24,9 +27,27 @@ def getBelta(n, m, r):
     # r: 分期手续费
     # b: 实际利率
     # (1+b)^m-(1/n+r)((1+b)^m-1)/b=1-m/n
-    mr = searchBelta(r, r * 3, 1 - m / n, r + 1 / n, m)
-    return mr, (1 + mr) ** 12 - 1
+    if (m <= 1):
+        return 0
+    else:
+        return searchBelta(r, r * 3, 1 - m / n, r + 1 / n, m)
 
-for m in range(2, 61):
-    mr, yr = getBelta(60, m, 0.0025)
-    print('%02d期' % m, '%.3f%%' % (mr * 100), '%.3f%%' % (mr * 1200), '%.3f%%' % (yr * 100))
+m = [x for x in range(2, 61)]
+mr = [getBelta(60, x, 0.0025) for x in m]
+yr1 = [x * 1200 for x in mr]
+yr2 = [((1 + x) ** 12 - 1) * 100 for x in mr]
+
+# mr = getBelta(60, m, 0.0025)
+# yr = (1 + mr) ** 12 - 1
+# print(m)
+for i in m:
+    print('%02d期' % i, '%.3f%%' % mr[i - 2], '%.3f%%' % yr1[i - 2], '%.3f%%' % yr2[i - 2])
+
+x = np.array(m)
+y0 = np.ones(len(m)) * 4.9
+y1 = np.array(yr1)
+y2 = np.array(yr2)
+plt.plot(x, y0, color="green", linewidth=1)
+plt.plot(x, y1, color="blue", linewidth=1)
+plt.plot(x, y2, color="red", linewidth=1)
+plt.show()
