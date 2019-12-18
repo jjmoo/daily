@@ -37,11 +37,8 @@ mr = [getBelta(60, x, 0.0025) for x in m]
 yr1 = [x * 1200 for x in mr]
 yr2 = [((1 + x) ** 12 - 1) * 100 for x in mr]
 
-# mr = getBelta(60, m, 0.0025)
-# yr = (1 + mr) ** 12 - 1
-# print(m)
 for i in m:
-    print('%02d期' % i, '%.3f%%' % mr[i - 2], '%.3f%%' % yr1[i - 2], '%.3f%%' % yr2[i - 2])
+    print('%02d期' % i, '%.3f%%' % (100 * mr[i - 2]), '%.3f%%' % yr1[i - 2], '%.3f%%' % yr2[i - 2])
 
 x = np.array(m)
 y0 = np.ones(len(m)) * 4.9
