@@ -17,7 +17,7 @@ def main(argv=None):
     if len(argv) > 1:
         input = argv[1]
     id_list = []
-    id_re = re.compile("\s([0-9a-f]{9})\s+-\s+(?!Merge)")
+    id_re = re.compile("\s([0-9a-f]{8,9})\s+-\s+(?!Merge)")
     with open(input, 'r') as fr:
         for line in fr:
             match = id_re.search(line)
