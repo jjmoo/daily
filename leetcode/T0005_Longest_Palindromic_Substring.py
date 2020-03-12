@@ -67,8 +67,29 @@ class Solution(object):
             find(i ,i)
         return s[cur[1] : cur[2] + 1]
 
+    def longestPalindromeManacher(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        if not s:
+            return ''
+        t = '^#'
+        for ch in s:
+            t += ch + '#'
+        t += '$'
+        n = len(t)
+        p, di, mx, center, length = [0] * n, 0, -1, 0, 0
+        for i in range(n - 1):
+            p[i] = min(p[(di << 1) - i], mx - i) if mx > i else 1
+            while t[i + p[i]] == t[i - p[i]]: p[i] += 1
+            if mx < i + p[i]: di, mx = i, i + p[i]
+            if p[i] > length: center, length = i, p[i]
+        start = (center - length) >> 1
+        return s[start : start + length - 1]
 
-test = Solution().longestPalindrome3
+
+test = Solution().longestPalindromeManacher
 print('bab', test('babad'))
 print('bb', test('cbbd'))
 print('acbbca', test('ddacbbcaacbd'))
