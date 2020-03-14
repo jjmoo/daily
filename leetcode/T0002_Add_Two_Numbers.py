@@ -1,6 +1,5 @@
 from utils import ListNode
 
-
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """

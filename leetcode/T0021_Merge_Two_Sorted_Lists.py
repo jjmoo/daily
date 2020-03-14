@@ -1,6 +1,5 @@
 from utils import ListNode
 
-
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         p = dummy = ListNode(0)
