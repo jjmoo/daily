@@ -10,8 +10,14 @@ class Solution:
             if sum_left < 0: sum_left = 0
         return result
 
+    def maxSubArrayDp(self, nums: List[int]) -> int:
+        if not nums: return -2 ** 31
+        for i in range(1, len(nums)):
+            nums[i] += max(0, nums[i - 1])
+        return max(nums)
 
-test = Solution().maxSubArray
+
+test = Solution().maxSubArrayDp
 print(6, test([-2,1,-3,4,-1,2,1,-5,4]))
 print(-1, test([-1]))
 
