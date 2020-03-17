@@ -12,14 +12,14 @@ class Solution:
 
 
 test = Solution().rotateRight
-print(test(ListNode.create_node([1,2,3,4,5]), 0))
-print(test(ListNode.create_node([1,2,3,4,5]), 1))
-print(test(ListNode.create_node([1,2,3,4,5]), 2))
-print(test(ListNode.create_node([1,2,3,4,5]), 3))
-print(test(ListNode.create_node([1,2,3,4,5]), 4))
-print(test(ListNode.create_node([1,2,3,4,5]), 5))
-print(test(ListNode.create_node([1,2,3,4,5]), 6))
-print(test(ListNode.create_node([]), 2))
+print(test(ListNode.create_list([1,2,3,4,5]), 0))
+print(test(ListNode.create_list([1,2,3,4,5]), 1))
+print(test(ListNode.create_list([1,2,3,4,5]), 2))
+print(test(ListNode.create_list([1,2,3,4,5]), 3))
+print(test(ListNode.create_list([1,2,3,4,5]), 4))
+print(test(ListNode.create_list([1,2,3,4,5]), 5))
+print(test(ListNode.create_list([1,2,3,4,5]), 6))
+print(test(ListNode.create_list([]), 2))
 
 
 # Given a linked list, rotate the list to the right by k places, where k is non-negative.

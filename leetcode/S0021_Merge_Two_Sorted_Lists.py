@@ -16,9 +16,9 @@ class Solution:
 
 
 test = Solution().mergeTwoLists
-print('1->1->2->3->4->4', test(ListNode.create_node([1,2,4]), ListNode.create_node([1,3,4])))
-print('1', test(ListNode.create_node([]), ListNode.create_node([1])))
-print('', test(ListNode.create_node([]), ListNode.create_node([])))
+print('1->1->2->3->4->4', test(ListNode.create_list([1,2,4]), ListNode.create_list([1,3,4])))
+print('1', test(ListNode.create_list([]), ListNode.create_list([1])))
+print('', test(ListNode.create_list([]), ListNode.create_list([])))
 
 
 # Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.

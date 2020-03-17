@@ -26,9 +26,9 @@ class ListNode(object):
         return sb
 
     @staticmethod
-    def create_node(lists):
+    def create_list(l):
         p = dummy = ListNode(0)
-        for x in lists:
+        for x in l:
             p.next = ListNode(x)
             p = p.next
         print('create:', dummy.next)
@@ -36,4 +36,40 @@ class ListNode(object):
 
     @staticmethod
     def create_lists(lists):
-        return [ListNode.create_node(l) for l in lists]
+        return [ListNode.create_list(l) for l in lists]
+
+
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+    
+    def __str__(self):
+        h = self.__height()
+        i, l = 0, [None] * (2 ** h - 1)
+        l[0], result, nl = self, '\n', 0
+        for i, n in enumerate(l):
+            if n:
+                if n.left: l[2 * i + 1] = n.left
+                if n.right: l[2 * i + 2] = n.right
+                result += ' %3d' % n.val
+            else:
+                result += '   x'
+            if nl == i:
+                nl, result = nl * 2 + 2, result + '\n'
+        return result
+
+    def __height(self):
+        return 1 + max(self.left.__height() if self.left else 0, \
+            self.right.__height() if self.right else 0)
+
+    @staticmethod
+    def create_tree(l):
+        n, result = len(l), [None if x == None else TreeNode(x) for x in l]
+        for i, node in enumerate(result):
+            if not node: continue
+            if 2 * i + 1 < n: node.left = result[2 * i + 1]
+            if 2 * i + 2 < n: node.right = result[2 * i + 2]
+        print('create:', result[0])
+        return result[0]

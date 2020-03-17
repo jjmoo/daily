@@ -25,10 +25,10 @@ class Solution(object):
 
 
 test = Solution().addTwoNumbers
-print(807, test(ListNode.create_node([2,4,3]), ListNode.create_node([5,6,4])))
-print(468, test(ListNode.create_node([3]), ListNode.create_node([5,6,4])))
-print(465, test(ListNode.create_node([]), ListNode.create_node([5,6,4])))
-print(1000, test(ListNode.create_node([1]), ListNode.create_node([9,9,9])))
+print(807, test(ListNode.create_list([2,4,3]), ListNode.create_list([5,6,4])))
+print(468, test(ListNode.create_list([3]), ListNode.create_list([5,6,4])))
+print(465, test(ListNode.create_list([]), ListNode.create_list([5,6,4])))
+print(1000, test(ListNode.create_list([1]), ListNode.create_list([9,9,9])))
 
 
 # You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
