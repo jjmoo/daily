@@ -35,6 +35,16 @@ class ListNode(object):
         return dummy.next
 
     @staticmethod
+    def create_cycle(l, pos):
+        p = head = ListNode.create_list(l)
+        if pos >= 0:
+            for _ in range(pos): p = p.next
+            tail = p
+            while tail.next: tail = tail.next
+            tail.next = p
+        return head
+
+    @staticmethod
     def create_lists(lists):
         return [ListNode.create_list(l) for l in lists]
 
