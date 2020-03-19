@@ -24,6 +24,12 @@ class ListNode(object):
             sb += f'->{p.val}'
             p = p.next
         return sb
+    
+    def __add__(self, node):
+        p = self
+        while p.next: p = p.next
+        p.next = node
+        return self
 
     @staticmethod
     def create_list(l):
