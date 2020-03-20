@@ -8,7 +8,7 @@ class Solution:
             return midOrder(node.left) + [node.val] + midOrder(node.right) 
         return midOrder()[k - 1]
 
-    def kthSmallestQuick(self, root: TreeNode, k: int) -> int:
+    def kthSmallestLoop(self, root: TreeNode, k: int) -> int:
         stack = []
         while True:
             while root:
@@ -21,7 +21,7 @@ class Solution:
             root = root.right
 
 
-test = Solution().kthSmallestQuick
+test = Solution().kthSmallestLoop
 print(1, test(TreeNode.create_tree([3,1,4,None,2]), 1))
 print(3, test(TreeNode.create_tree([5,3,6,2,4,None,None,1]), 3))
 
