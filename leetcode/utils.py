@@ -1,4 +1,5 @@
 import time
+from typing import List
 
 class Benchmark():
     """Benchmark programs."""
@@ -60,7 +61,17 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
-    
+
+    def find_node(self, *vals: List):
+        result, val2index = [None] * len(vals), {}
+        for i, v in enumerate(vals): val2index[v] = i
+        def find(node = self):
+            if not node: return
+            if node.val in val2index: result[val2index[node.val]] = node
+            find(node.left); find(node.right)
+        find()
+        return tuple(result)
+
     def __str__(self):
         h = self.__height()
         i, l = 0, [None] * (2 ** h - 1)
