@@ -1,3 +1,6 @@
 [submodule "modules/yongxinz"]
 	path = modules/yongxinz
 	url = https://github.com/yongxinz/tech-blog.git
+[submodule "modules/labuladong"]
+	path = modules/labuladong
+	url = https://github.com/labuladong/fucking-algorithm.git
