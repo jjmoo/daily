@@ -23,8 +23,38 @@ class Solution:
                 queue.appendleft((value, cnt - 1))
         return result
 
+    def maxSlidingWindowIndex(self, nums: List[int], k: int) -> List[int]:
+        from collections import deque
+        if 1 == k: return list(nums)
+        result, queue, max_num = [], deque(), - 2 ** 31
+        for i in range(k - 2, -1, -1):
+            if nums[i] > max_num:
+                max_num = nums[i]
+                queue.appendleft(i)
+        for i in range(k - 1, len(nums)):
+            while queue and nums[queue[-1]] <= nums[i]:
+                queue.pop()
+            queue.append(i)
+            result.append(nums[queue[0]])
+            if queue[0] == i - k + 1: queue.popleft()
+        return result
 
-test = Solution().maxSlidingWindow
+    def maxSlidingWindowSplit(self, nums: List[int], k: int) -> List[int]:
+        result, n = [], len(nums)
+        left, right = [0] * n, [0] * n
+        left[0], right[-1] = nums[0], nums[-1]
+        for i in range(1, n):
+            if i % k == 0: left[i] = nums[i]
+            else: left[i] = max(left[i - 1], nums[i])
+            j = n - 1 - i
+            if (j + 1) % k == 0: right[j] = nums[j]
+            else: right[j] = max(right[j + 1], nums[j])
+        for i in range(n - k + 1):
+            result.append(max(right[i], left[i + k - 1]))
+        return result
+
+
+test = Solution().maxSlidingWindowSplit
 print([3,3,5,5,6,7], test([1,3,-1,-3,5,3,6,7], 3))
 
 
