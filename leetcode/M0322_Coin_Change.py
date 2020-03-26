@@ -26,6 +26,16 @@ class Solution:
         cnt = dp()
         return cnt if cnt < 999999999 else -1
 
+    def coinChangeDownUp(self, coins: List[int], amount: int) -> int:
+        if not coins or amount < 0: return -1
+        dp = [0] * (amount + 1)
+        for i in range(1, amount + 1):
+            dp[i] = 999999999
+            for x in coins:
+                if i - x >= 0:
+                    dp[i] = min(dp[i], dp[i - x] + 1)
+        return dp[amount] if dp[amount] < 999999999 else -1
+
     def coinChangeGreedy(self, coins: List[int], amount: int) -> int:
         if not coins or amount < 0: return -1
         n, coins, MAX = len(coins), list(sorted(coins, reverse=True)), 999999999
@@ -48,7 +58,8 @@ def test(method, name):
         print(3, method([1, 2, 5], 5465))
 
 # test(Solution().coinChange, 'coinChange')
-# test(Solution().coinChange, 'coinChangeBetter')
+# test(Solution().coinChangeBetter, 'coinChangeBetter')
+test(Solution().coinChangeDownUp, 'coinChangeDownUp')
 test(Solution().coinChangeGreedy, 'coinChangeGreedy')
 
 
