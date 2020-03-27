@@ -63,9 +63,46 @@ class Solution:
                 depth -= 1
         return result
 
+    def maxDepthAfterSplit3(self, seq: str) -> List[int]:
+        if not str: return []
+        result = [0] * len(seq)
+        for i in range(1, len(seq)):
+            if seq[i] == seq[i - 1]:
+                result[i] = 1 - result[i - 1]
+            else:
+                result[i] = result[i - 1]
+        return result
+
+    def maxDepthAfterSplit4(self, seq: str) -> List[int]:
+        if not str: return []
+        result, flag = [], []
+        cnt1, cnt2 = 0, 0
+        for ch in seq:
+            if '(' == ch:
+                if cnt1 <= cnt2:
+                    result.append(0)
+                    flag.append(0)
+                    cnt1 += 1
+                else:
+                    result.append(1)
+                    flag.append(1)
+                    cnt2 += 1
+            else:
+                f = flag.pop()
+                if 0 == f:
+                    result.append(0)
+                    cnt1 -= 1
+                else:
+                    result.append(1)
+                    cnt2 -= 1
+        return result
+
+    def maxDepthAfterSplit5(self, seq: str) -> List[int]:
+        return [i & 1 ^ (c == '(') for i, c in enumerate(seq)]
+
 
 def test(input_string):
-    func = Solution().maxDepthAfterSplit2
+    func = Solution().maxDepthAfterSplit5
     deep = Solution().analyse
     output_A, output_B = '', ''
     for i, v in enumerate(func(input_string)):
@@ -105,7 +142,6 @@ test('()')
 
 # Input: seq = "()(())()"
 # Output: [0,0,0,1,1,0,1,1]
-#  
 
 # Constraints:
 
