@@ -25,8 +25,33 @@ class Solution:
                         result += 1
         return result
 
+    def closedIsland2(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]: return 0
+        from collections import deque
+        result, n, m = 0, len(grid), len(grid[0])
+        for i in range(1, n - 1):
+            for j in range(1, m - 1):
+                if 0 == grid[i][j]:
+                    grid[i][j] = 1
+                    queue = deque()
+                    queue.append((i, j))
+                    valid = True
+                    while queue:
+                        l, k = queue.popleft()
+                        for lo, ko in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                            ll, kk = l + lo, k + ko
+                            if 0 == grid[ll][kk]:
+                                grid[ll][kk] = 1
+                                if ll == 0 or ll == n - 1 or kk == 0 or kk == m - 1:
+                                    valid = False
+                                else:
+                                    queue.append((ll, kk))
+                    if valid:
+                        result += 1
+        return result
 
-test = Solution().closedIsland
+
+test = Solution().closedIsland2
 
 gri1 = [[1,1,1,1,1,1,1,0],
         [1,0,0,0,0,1,1,0],
