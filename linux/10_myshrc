@@ -1,0 +1,34 @@
+# ===============================================
+export ANDROID_HOME=/Users/pz/zohn/AndroidSdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=~/bin:~/bin/git-repo:$PATH
+export PATH=~/zohn/kotlin-compiler/kotlinc/bin:$PATH
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+
+alias mv='mv -i'
+alias ll='ls -alh'
+alias gradle="chmod +x ./gradlew && ./gradlew"
+alias logcat="adb logcat -b all"
+alias iconv="iconv -f GBK -t UTF-8"
+
+# ============================================================
+ulimit -S -n 1024
+# hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g ~/android.dmg
+# hdiutil resize -size <new-size-you-want>g ~/android.dmg.sparseimage
+mountAndroid() { hdiutil attach ~/work_root/aosp/android.dmg.sparseimage -mountpoint /Users/pz/work_root/aosp/source; }
+umountAndroid() { hdiutil detach /Users/pz/work_root/aosp/source; }
+# ============================================================
+
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1086"
+alias unsetproxy="unset ALL_PROXY"
+alias ipouter="curl -i http://ip.cn"
+alias condainit="source ~/.bash_profile"
+
+
+
+
+
+
+
+
+
