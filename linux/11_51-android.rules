@@ -1,0 +1,3 @@
+# /etc/udev/rules.d/51-android.rules
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", MODE="0666"
+
